@@ -63,6 +63,9 @@ python manage.py migrate
 ### Done!
 * ___The project will be on http://127.0.0.1:8001/___
 * There is very little delay in updation of history/images because django-channels are not used in this project.
+* As i completely focused on what i said to do, but if you want frontend (using react.ts), or if you want it be hosted
+(on my linux VPS, using nginx and gunicorn), so it can be done as well. 
+
 
 ### Extro :
 The project is fully tested and it is working completely fine, but as a developer i know what can 
