@@ -1,7 +1,10 @@
 from django.urls import path
 from . import views
 
+
+"""Handling App URLs"""
+
 urlpatterns = [
     path("", views.homepage, name="home page"),
-    path("generate-image/", views.generate_image, name="generate image")
+    path("history/", views.history, name="history")
 ]

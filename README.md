@@ -1,58 +1,47 @@
-We will start by creating an virtual env from terminal
-to create a virtual environment :
+Hi there!, How are you doing?
+I hope you doing well :)
+
+# Django-Celery-Redis Integration App
+In this project i leverages the value of celery, redis, docker and django to use stability AI API by doing parallel
+processing.!
+
+___Note: This project is compatible with Windows along with docker.___
+
+## Let's get started
+### First we start with basic django configurations:
+
+*  Creating Virtual Environment :
 
 ```python -m venv venv```
 
-and to activate the virtual environment
+* Activating Virtual Environment :
 
 ```.\venv\Scripts\activate```
 
-then we will install the necessary packages from requirements.txt
+* Cloning the repo :
+
+```git clone https://github.com/RiturajAgrahari/django-celery-assignment.git```
+
+* Installing the requirements :
 
 ```pip install -r requirements.txt```
 
-then we will create our djnago project by writing:
+* Create a .env file and add these data into it :
 
-```django-admin startproject assignment .```
-
-then we will create our first app in the project
-
-```python manage.py startapp aigeneration```
-
-
-now first we will change some things from settings.py
-
-adding the app to installed_app
-```python
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'aigeneration'
-]
+```
+DJANGO_SECRET_KEY = "your_django_secret_key"
+STABILITY_API_KEY = "your_stability_api_key"
+CELERY_BROKER_REDIS_URL = "redis://redis:6379"
 ```
 
-then we will link our project urls.py to our app urls.py
-```diff
-    urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include("aigeneration.urls"))  # linking our apps urls.py
-]
+__API KEY__: https://platform.stability.ai/docs/api-reference#tag/Text-to-Image/operation/textToImage
+
+* Now we will make migrations to initiate our sql lite db
 ```
-
-
-now we are going to create migrations in our sql lite db:
-```commandline
 python manage.py makimigrations
 python manage.py migrate
 ```
 
+### Docker configuration is attached in the repo as well
+* _here i used docker desktop for windows_
 
-Don't forget to add the .env file with these detail 
-```
-DJANGO_SECRET_KEY = "your_django_secret_key"
-API_KEY = "your_api_key_for_image_generation_api"
-```

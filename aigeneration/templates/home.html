@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html>
-<body>
+<body style="background-color:#181818; color: rgb(204, 204, 204); display: flex; align-items: center; justify-content:center; flex-direction:column; height:100%">
 
-<h1>Hello World!</h1>
-<p>Welcome to my Django-Celery assignment!</p>
+<h1>Generate Image by our AI</h1>
+<p>here is our new text-to-image-generation AI based on technology used by CHAOTIC.AI</p>
+<a style="color:rgb(204, 204, 204);" href="/history">check search history</a>
+
+<form action="/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+{% for image in images %}
+    <img src="/media/{{image}}" width="30%">
+{% endfor %}
+</div>
 
 </body>
 </html>
