@@ -53,6 +53,13 @@ python manage.py migrate
 
 * __Additional Note:__ Create a `media` dir in main directory
 
+### Celery Configuration
+* celery settings is configured in bottom of `settings.py` in project_dir that is `assignment`
+* celery is initiated in `celery.py` in `aigeneration` app
+* celery is started in django through `__init__.py` in `assignment`
+* celery separate worker service is running through docker
+
+
 ### Docker configuration
 * _here i used docker desktop for windows_
 * all docker config files are already included in the repo
