@@ -1,11 +1,20 @@
-Hi there!, How are you doing?
-I hope you doing well :)
+__Hi there!, How are you doing?__
 
-# Django-Celery-Redis Integration App
-In this project i leverages the value of celery, redis, docker and django to use stability AI API by doing parallel
-processing.!
+__I hope you doing well :)__
+
+# Django-Celery-Redis Integration WebApp
+In this project i leverage django to make an webapp which uses Stability AI to generate text-to-image by using redis
+broker and celery, the app is now scalable horizontally and performance is enhanced due to celery and redis library
+.
 
 ___Note: This project is compatible with Windows along with docker.___
+
+## Technologies used:
+* Django
+* Docker
+* Celery
+* Redis
+* Stability AI
 
 ## Let's get started
 ### First we start with basic django configurations:
@@ -26,7 +35,7 @@ ___Note: This project is compatible with Windows along with docker.___
 
 ```pip install -r requirements.txt```
 
-* Create a .env file and add these data into it :
+* Create a .env file and adding these details into it :
 
 ```
 DJANGO_SECRET_KEY = "your_django_secret_key"
@@ -42,6 +51,30 @@ python manage.py makimigrations
 python manage.py migrate
 ```
 
-### Docker configuration is attached in the repo as well
-* _here i used docker desktop for windows_
+* __Additional Note:__ Create a `media` dir in main directory
 
+### Docker configuration
+* _here i used docker desktop for windows_
+* all docker config files are already included in the repo
+* Run this command to start the docker :
+
+```docker-compose up -d --build```
+
+### Done!
+* ___The project will be on http://127.0.0.1:8001/___
+
+### Extro :
+The project is fully tested and it is working completely fine, but as a developer i know what can 
+be possibly happen, so i have a gentle request, if you find any mistake or if you find anything wrong in this
+or if you think this is a not the best way to do that, please drop a message i would love when i get to know about 
+my mistakes, because after you i will never want anyone to point the same mistake again.
+
+
+### Thankyou :
+Thankyou so much for watching this repo, have a nice day forever
+
+### You can skip this:
+* __This is not a production build. It will work on locally only.__
+* It is only designed to do the specified task, otherwise it can be way more better than the current stage.
+* Some steps can be done in different way as well, but i found this to be the best approach to accomplish the specified task.
+* It is completed tested
