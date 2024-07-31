@@ -62,6 +62,7 @@ python manage.py migrate
 
 ### Done!
 * ___The project will be on http://127.0.0.1:8001/___
+* There is very little delay in updation of history/images because django-channels are not used in this project.
 
 ### Extro :
 The project is fully tested and it is working completely fine, but as a developer i know what can 
