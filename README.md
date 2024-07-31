@@ -47,7 +47,7 @@ __API KEY__: https://platform.stability.ai/docs/api-reference#tag/Text-to-Image/
 
 * Now we will make migrations to initiate our sql lite db
 ```
-python manage.py makimigrations
+python manage.py makemigrations
 python manage.py migrate
 ```
 
