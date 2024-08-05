@@ -1,22 +1,56 @@
 <!DOCTYPE html>
 <html>
-<body style="background-color:#181818; color: rgb(204, 204, 204); display: flex; align-items: center; justify-content:center; flex-direction:column; height:100%">
+<head>
+    <title>Chaotix.ai</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
 
-<h1>Generate Image by our AI</h1>
-<p>here is our new text-to-image-generation AI based on technology used by CHAOTIC.AI</p>
-<a style="color:rgb(204, 204, 204);" href="/history">check search history</a>
+<body class="d-flex flex-column align-items-center justify-content-center" style="background-color:#181818; color: rgb(204, 204, 204);">
+    <h1 class="mt-5 mb-5 text-capitalize">Generate Image by our AI</h1>
+    <p class="text-uppercase">here is our new text-to-image-generated AI based on technology used by CHAOTIX.AI</p>
+    <a class="btn border mb-5" style="color:rgb(204, 204, 204);" href="/history">check search history</a>
 
-<form action="/" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit">
-</form>
+    <form action="/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input class="btn border mt-3" style="color:rgb(204, 204, 204);" type="submit" value="Submit">
+    </form>
 
-<div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-{% for image in images %}
-    <img src="/media/{{image}}" width="30%">
-{% endfor %}
-</div>
+    <div class="d-flex flex-column justify-content-center align-items-center" style="gap: 10px;">
+    <div id="ai-text">
+        {% if images %}
+            AI is generating your image please wait a moment...
+        {% endif %}
+    </div>
+
+    {% for image in images %}
+        {% if image != None %}
+        <img src="/media/{{image}}" width="30%">
+        {% endif %}
+    {% endfor %}
+    </div>
+
+<script>
+    const images_id = []
+    {% for image in images %}
+        var myValue = '{{ image|escapejs }}'
+        if (myValue !== 'None') {
+            images_id.push(myValue)
+            console.log(images_id)
+        }
+    {% endfor %}
+
+    console.log({{images_id}})
+
+    setTimeout(function(){
+        console.log("refreshing page!")
+        if (images_id.length == 3) {
+            window.location=`?images=${images_id}`;
+            document.getElementById('ai-text').remove()
+        }
+        console.log("refreshed page?")
+    }, 10000);
+</script>
 
 </body>
 </html>

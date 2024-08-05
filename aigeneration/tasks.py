@@ -2,6 +2,7 @@ from celery import shared_task
 from django.core.files.base import ContentFile
 from .models import GeneratedImage, SearchPrompt
 from django.conf import settings
+from django.core.cache import cache
 
 import base64
 import os
@@ -65,6 +66,10 @@ def generate_images(prompt, prompt_id):
         # when working in docker
         image_url = str(obj.image.path).split("app/")[-1]
 
+    # cache.set(str(generate_images.request.id), image_url, timeout=None)
+    # e = cache.get(generate_images.request.id)
+    # print(e)
+
     # returning the image URL
-    return image_url
+    return generate_images.request.id
 
