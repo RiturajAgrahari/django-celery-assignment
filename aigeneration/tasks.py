@@ -71,5 +71,5 @@ def generate_images(prompt, prompt_id):
     # print(e)
 
     # returning the image URL
-    return generate_images.request.id
+    return image_url
 
