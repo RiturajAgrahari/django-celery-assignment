@@ -18,6 +18,7 @@ def homepage(request):
 
     """Here we will handle the page requested by the user with prompt."""
     if request.method == "POST":
+        """For looping if you have large number of prompts"""
         # for key, prompt in request.POST.items():
         #     if key == 'csrfmiddlewaretoken':
         #         continue
@@ -28,6 +29,7 @@ def homepage(request):
         image_url1_id = generate_images.delay(request.POST.get("prompt1"))  # celery worker 1
         image_url2_id = generate_images.delay(request.POST.get("prompt2"))  # celery worker 2
         image_url3_id = generate_images.delay(request.POST.get("prompt3"))  # celery worker 3
+        print(image_url1_id, image_url2_id, image_url3_id)
         # Getting the generated images
 
         return render(request, "home.html", {"form": form, "images": []})
