@@ -1,8 +1,6 @@
 from celery import shared_task
 from django.core.files.base import ContentFile
 from .models import GeneratedImage, SearchPrompt
-from django.conf import settings
-from django.core.cache import cache
 
 import base64
 import os
@@ -13,9 +11,11 @@ load_dotenv()
 
 
 @shared_task()
-def generate_images(prompt, prompt_id):
+def generate_images(prompt):
     """Here we are handling the celery worker who are assigned to extract the images by the requested prompts"""
-    search_prompt = SearchPrompt.objects.get(id=prompt_id)
+
+    search_prompt = SearchPrompt.objects.create(
+        search_prompt=prompt)  # adding the prompt to database so that we have a record history
 
     # Configuring API credentials
     engine_id = "stable-diffusion-xl-1024-v1-0"
@@ -65,10 +65,6 @@ def generate_images(prompt, prompt_id):
 
         # when working in docker
         image_url = str(obj.image.path).split("app/")[-1]
-
-    # cache.set(str(generate_images.request.id), image_url, timeout=None)
-    # e = cache.get(generate_images.request.id)
-    # print(e)
 
     # returning the image URL
     return image_url

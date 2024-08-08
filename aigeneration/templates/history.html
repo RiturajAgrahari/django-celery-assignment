@@ -10,14 +10,10 @@
     <h1>SEARCH HISTORY</h1>
     <a class="btn border" style="color:rgb(204, 204, 204);" href="/">go back to home</a>
 
-    {% for key, value in data.items %}
-        <h2>{{ key }}</h2>
-        <div class="d-flex justify-content-center align-items-center" style="gap: 10px;">
-            {% for i in value %}
-                <img src="/media/{{i.image}}" width="30%">
-            {% endfor %}
-        </div>
-        {{item.id}}
+    <div class="d-flex justify-content-center align-items-center" style="gap: 10px; flex-wrap: wrap;">
+    {% for images in data %}
+        <img src="/media/{{images}}" width="30%">
     {% endfor %}
+    </div>
 </body>
 </html>
